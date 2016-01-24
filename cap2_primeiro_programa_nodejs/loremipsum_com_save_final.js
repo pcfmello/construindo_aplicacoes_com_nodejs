@@ -60,17 +60,13 @@ var criaArquivo = function(nomeArquivo, texto) {
 //CHAMA A API LORIPSUM PARA RECUPERAR OS DADOS 
 var getLoripsum = function() {
 	http().get('http://loripsum.net/api/' + buscaQuantidadeParagrafos(), function(res) {
-
 		var texto = '';
-
 		res.on('data', function(data) {
 			texto += data;		
 		});
-
 		res.on('end', function() {
 			criaArquivo(buscaNomeArquivo(), texto);
 		});
-
 	}).on('error', function(e) {
 		console.log('');
 		console.log('Houve um erro ao chamar a API Loripsum: '.concat(e.message) + '');
