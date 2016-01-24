@@ -4,6 +4,7 @@
   "description": "Projetos do livro \"Construindo Aplicações com NodeJS\" de William Bruno Moraes",
   "main": "index.js",
   "dependencies": {
+    "debug": "^2.2.0",
     "express": "^4.13.4"
   },
   "devDependencies": {},
