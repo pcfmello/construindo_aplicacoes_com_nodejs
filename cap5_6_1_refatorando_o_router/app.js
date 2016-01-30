@@ -5,7 +5,6 @@
  *          como servidor web e gerenciador de rotas da aplicação.
  * */
 var express = require('express');
-var app = express();
 
 /**
  * @module  Method Override
@@ -22,6 +21,8 @@ var methodOverride = require('method-override');
  *          só entende texto puro.
  * */
 var bodyParser = require('body-parser');
+
+var app = express();
  
 
  /* -- SERVER CONFIG inicio -- */
@@ -49,21 +50,7 @@ app.use(function(request, response, next) {
 
 /* -- ROUTER inicio -- */
 //Rota para '/'
-app.get('/', function(req, res) {
-	res.send('Hello World!');
-});
-
-//Rota para '/contato'
-app.get('/contato', function(req, res) {
-	res.status(200);
-	if(req.accepts('text')) {
-		res.write('Nome: Paulo Cesar\n');
-		res.write('E-mail: pcfmello@gmail.com');
-		res.end();
-	} else {
-		res.json({nome: 'Paulo Cesar', email: 'pcfmello@gmail.com', cidade: 'Florianópolis'});
-	}
-});
+app.use('/', require('./routes'));/*
 /* -- ROUTER final -- */
 
 
@@ -84,9 +71,5 @@ app.use(function(err, request, response, next) {
 
 
 /* -- SERVER LISTENER inicio -- */
-var server = app.listen(3000, function() {
-	var host = server.address().address;
-	var port = server.address().port;
-	console.log('Exemplo de aplicação RESTful escutando em http://%s:%s', host, port);
-});
+module.exports = app;
 /* -- SERVER LISTENER final -- */
