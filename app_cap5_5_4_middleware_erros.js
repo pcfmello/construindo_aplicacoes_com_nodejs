@@ -29,9 +29,19 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(methodOverride('X-Method-Override'));
 app.use(methodOverride('_method')); //Forma query string
 
-//Configura o servidor para trabalhar com ao API REST
+//Configura o servidor para trabalhar com a API REST
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+//Middleware para "Não servir o arquivo favicon.ico"
+app.use(function(request, response, next) {
+	if(request.url === '/favicon.ico') {		
+		response.writeHead(200, {'Content-Type': 'image/x-icon'});
+		response.end();
+	} else {
+		next();
+	}
+});
 
 app.get('/', function(req, res) {
 	res.send('Hello World!');
@@ -47,6 +57,8 @@ app.get('/contato', function(req, res) {
 		res.json({nome: 'Paulo Cesar', email: 'pcfmello@gmail.com', cidade: 'Florianópolis'});
 	}
 });
+
+
 
 var server = app.listen(3000, function() {
 	var host = server.address().address;
