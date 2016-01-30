@@ -1,11 +1,15 @@
 var express = require('express');
 var app = express();
 var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
 
 app.use(methodOverride('X-HTTP-Method'));
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(methodOverride('X-Method-Override'));
 app.use(methodOverride('_method'));
+
+app.use(bodyParser.json());
+app.use(urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
 	res.send('Hello World!');
