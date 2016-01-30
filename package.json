@@ -10,7 +10,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "loremipsum": "node cap2_primeiro_programa_nodejs/loremipsum.js"
+    "loremipsum": "node cap2_primeiro_programa_nodejs/loremipsum.js",
+    "nodemon": "nodemon app.js"
   },
   "repository": {
     "type": "git",

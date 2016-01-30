@@ -12,7 +12,7 @@ app.get('/contato', function(req, res) {
 		res.write('E-mail: pcfmello@gmail.com');
 		res.end();
 	} else {
-		res.json({nome: 'Paulo Cesar', email: 'pcfmello@gmail.com'});
+		res.json({nome: 'Paulo Cesar', email: 'pcfmello@gmail.com', cidade: 'Florianópolis'});
 	}
 });
 
