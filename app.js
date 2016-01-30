@@ -1,5 +1,11 @@
 var express = require('express');
 var app = express();
+var methodOverride = require('method-override');
+
+app.use(methodOverride('X-HTTP-Method'));
+app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(methodOverride('X-Method-Override'));
+app.use(methodOverride('_method'));
 
 app.get('/', function(req, res) {
 	res.send('Hello World!');
